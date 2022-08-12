@@ -1,0 +1,46 @@
+1. Randomly select a word from dictionary.
+2. Create dashed lines equal to the length of the selected word with appropriate spacing.
+3. Display guessed word as dashed lines to screen and total number of tries left (begin with 6).
+4. Ask player to guess a letter. Allow input to be only a length of 1 and to be a letter.
+5.  A. If guessed letter is part of the word, update the appropriate dashed line
+    indices with the letter and display the updated guess.
+    B. If guessed letter is not part of the word, minus 1 from the total number of tries and display the guessed word so far.
+6. Repeat steps 4 - 5 until either
+    A. Total number of tries equals to 6.
+    B. The guessed word is equal to the selected word.
+7. If outcome is:
+    A. 6A - Display that player has lost and the selected word.
+    B. 6B - Display the player has won.
+
+Methods:
+
+1. initialize
+  -> assign selected_word to randomly selected word from the text file
+  -> assign guess with '-' equal to the number of letters in the selected_word
+  -> set numTries = 6
+  -> guessedLetters = []
+
+2. play
+  -> play until gameOver?
+  -> letterGuess -> letterCorrect?(letter) -> insertLetter -> displayProgress
+
+3. gameOver?
+  -> if numTries == 6, then true
+  -> if guess == selected_word, then true
+  -> otherwise, false
+
+4. letterGuess
+  -> ask user for letter input
+  -> if input.length is greater than 1, ask again
+  -> otherwise, push user guess into guessedLetters
+
+5. letterCorrect?(letter)
+  -> if selected_word.include?(letterGuess), then return true
+  -> else return false and numTries - 1
+
+6. insertLetter
+  -> if letterCorrect? == true, replace appropriate index or indices with the letterGuess
+  -> if letterCorrect? == false, do nothing
+
+7. displayProgress
+  -> display to terminal the numTries and guess thus far
